@@ -1,8 +1,207 @@
-# facebrowser sdk
+# 📦 GTA World FaceBrowser
 
-Esta libreria es un sdk de la api de facebrowser de gtaw es, falta terminar...
+Una librería TypeScript para interactuar con la API de GTA World (es) de forma sencilla y tipada.
 
-# todo
-* dm, types
-* comentarios de interfaz
-* comentarios de metodos
+## Caracteristicas
+
+- 📦 Totalmente tipado con TypeScript
+- 📝 Crear, editar y eliminar publicaciones
+- 💬 Leer y crear comentarios
+- 📄 Obtener las páginas del usuario
+
+---
+
+# Primeros pasos
+
+```ts
+import { FaceClient } from "gtaworld-fb";
+
+const client = new FaceClient("TU_API_KEY"); // existe un segundo parametro que es la url_base, en cambio de que cambie en un futuro la misma se podra cambiar
+```
+
+# ¿Qué es un `page_id`?
+
+Una de las dudas más comunes es el uso del **`page_id`**.
+
+A diferencia de otras redes sociales, FaceBrowser no permite publicar utilizando directamente tu perfil personal.
+
+Todas las publicaciones, comentarios y acciones realizadas mediante la API deben hacerse desde una Página (Page). 
+
+Cada vez que crees una publicación, edites un post o escribas un comentario deberás indicar el **`page_id`** de la página desde la cual querés realizar esa acción.
+
+Ejemplo:
+
+```ts
+await client.posts.create({
+    page_id: 6023,
+    content: "Hola"
+});
+```
+
+Si no conocés el ID de tus páginas, podés obtenerlas mediante:
+
+```ts
+const pages = await client.pages.mine();
+```
+
+---
+
+# Pages
+
+## Obtener mis páginas
+
+Devuelve todas las páginas administradas por el usuario autenticado.
+
+```ts
+const pages = await client.pages.mine();
+```
+
+---
+
+# Posts
+
+## Obtener publicaciones
+
+Obtiene las publicaciones pertenecientes a una página.
+
+```ts
+const posts = await client.posts.list({
+    pageId: 6023
+});
+```
+
+La API utiliza paginación mediante cursores.
+
+```ts
+const siguiente = await client.posts.list({
+    pageId: 6023,
+    cursor: posts.meta.next_cursor
+});
+```
+
+---
+
+## Obtener una publicación
+
+```ts
+const post = await client.posts.get({
+    pageId: 6023,
+    postId: 150
+});
+```
+
+---
+
+## Crear una publicación
+
+```ts
+await client.posts.create({
+    page_id: 6023,
+    content: "Hola"
+});
+```
+
+---
+
+## Editar una publicación
+
+```ts
+await client.posts.edit({
+    postId: 150,
+    page_id: 6023,
+    content: "Contenido actualizado."
+});
+```
+
+---
+
+## Eliminar una publicación
+
+```ts
+await client.posts.delete({
+    postId: 150,
+    page_id: 6023
+});
+```
+
+---
+
+# Comentarios
+
+## Obtener comentarios
+
+Obtiene todos los comentarios de una publicación.
+
+```ts
+const comments = await client.comments.get({
+    postId: 150,
+    page_id: 6023
+});
+```
+
+---
+
+## Crear un comentario
+
+```ts
+await client.comments.post({
+    postId: 150,
+    page_id: 6023,
+    content: "excelente publicacion"
+});
+```
+---
+
+# Referencia de la API
+
+## Pages
+
+| Método | Descripción |
+|---------|-------------|
+| `pages.mine()` | Obtiene todas las páginas administradas por el usuario autenticado. |
+
+---
+
+## Posts
+
+| Método | Descripción |
+|---------|-------------|
+| `posts.list()` | Lista las publicaciones de una página. |
+| `posts.get()` | Obtiene una publicación por su ID. |
+| `posts.create()` | Crea una nueva publicación. |
+| `posts.edit()` | Edita una publicación existente. |
+| `posts.delete()` | Elimina una publicación. |
+
+---
+
+## Comentarios
+
+| Método | Descripción |
+|---------|-------------|
+| `comments.get()` | Obtiene los comentarios de una publicación. |
+| `comments.post()` | Publica un nuevo comentario. |
+
+---
+
+# Ejemplo completo
+
+```ts
+import { FaceClient } from "gtaworld-fb";
+
+const client = new FaceClient(process.env.FACE_API_KEY!);
+
+const pages = await client.pages.mine();
+
+const page = pages[0];
+
+const post = await client.posts.create({
+    page_id: page.id,
+    content: "Hola"
+});
+
+await client.comments.post({
+    page_id: page.id,
+    postId: post.post.id,
+    content: "Primer comentario."
+});
+```

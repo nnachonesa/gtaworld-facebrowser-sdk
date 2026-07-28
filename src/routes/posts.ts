@@ -13,13 +13,6 @@ import {
 export class PostsAPI {
     constructor(private readonly http: HttpClient) { }
 
-    /**
-     *
-     *
-     * @param {ListPostQuery} query
-     * @return {*} 
-     * @memberof PostsAPI
-     */
     list(query: ListPostQuery) {
         return this.http.ky
             .get("posts", {
@@ -31,13 +24,6 @@ export class PostsAPI {
             .json<Posts>();
     }
 
-    /**
-     *
-     *
-     * @param {CreatePostQuery} body
-     * @return {*} 
-     * @memberof PostsAPI
-     */
     create(body: CreatePostQuery) {
         return this.http.ky
             .post("posts", {
@@ -46,13 +32,6 @@ export class PostsAPI {
             .json<CreatePostResponse>();
     }
 
-    /**
-     *
-     *
-     * @param {GetPostQuery} query
-     * @return {*} 
-     * @memberof PostsAPI
-     */
     get(query: GetPostQuery) {
         return this.http.ky
             .get(`posts/${query.postId}`, {
@@ -63,13 +42,6 @@ export class PostsAPI {
             .json<CreatePostResponse>();
     }
 
-    /**
-     *
-     *
-     * @param {DeletePostQuery} query
-     * @return {*} 
-     * @memberof PostsAPI
-     */
     delete(query: DeletePostQuery) {
         return this.http.ky.delete(`posts/${query.postId}`, {
             searchParams: {
@@ -78,13 +50,6 @@ export class PostsAPI {
         });
     }
 
-    /**
-     *
-     *
-     * @param {EditPostQuery} query
-     * @return {*} 
-     * @memberof PostsAPI
-     */
     edit(query: EditPostQuery) {
         return this.http.ky
             .put(`posts/${query.postId}`, {
