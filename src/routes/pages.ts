@@ -1,12 +1,12 @@
-import { HttpClient } from "../http";
-import { MinePagesResponse } from "../types";
+import { type HttpClient } from '../http';
+import { type MinePagesResponse } from '../types';
 
 export class PagesAPI {
-    constructor(private readonly http: HttpClient) { }
+    constructor (private readonly http: HttpClient) { }
 
-    mine() {
+    mine () {
         return this.http.ky
-            .get(`pages/mine`)
+            .get('pages/mine')
             .json<MinePagesResponse>();
     }
 }

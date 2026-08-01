@@ -1,64 +1,64 @@
-import { HttpClient } from "../http";
+import { type HttpClient } from '../http';
 import {
-    CreatePostQuery,
-    CreatePostResponse,
-    DeletePostQuery,
-    EditPostQuery,
-    GetPostQuery,
-    ListPostQuery,
-    Posts,
-    Post,
-} from "../types";
+    type CreatePostQuery,
+    type CreatePostResponse,
+    type DeletePostQuery,
+    type EditPostQuery,
+    type GetPostQuery,
+    type ListPostQuery,
+    type Posts,
+    type Post
+} from '../types';
 
 export class PostsAPI {
-    constructor(private readonly http: HttpClient) { }
+    constructor (private readonly http: HttpClient) { }
 
-    list(query: ListPostQuery) {
+    list (query: ListPostQuery) {
         return this.http.ky
-            .get("posts", {
+            .get('posts', {
                 searchParams: {
                     page_id: query.pageId,
-                    cursor: query.cursor,
-                },
+                    cursor: query.cursor
+                }
             })
             .json<Posts>();
     }
 
-    create(body: CreatePostQuery) {
+    create (body: CreatePostQuery) {
         return this.http.ky
-            .post("posts", {
-                json: body,
+            .post('posts', {
+                json: body
             })
             .json<CreatePostResponse>();
     }
 
-    get(query: GetPostQuery) {
+    get (query: GetPostQuery) {
         return this.http.ky
-            .get(`posts/${query.postId}`, {
+            .get(`posts/${ query.postId }`, {
                 searchParams: {
-                    page_id: query.pageId,
-                },
+                    page_id: query.pageId
+                }
             })
             .json<CreatePostResponse>();
     }
 
-    delete(query: DeletePostQuery) {
-        return this.http.ky.delete(`posts/${query.postId}`, {
+    delete (query: DeletePostQuery) {
+        return this.http.ky.delete(`posts/${ query.postId }`, {
             searchParams: {
-                page_id: query.page_id,
-            },
+                page_id: query.page_id
+            }
         });
     }
 
-    edit(query: EditPostQuery) {
+    edit (query: EditPostQuery) {
         return this.http.ky
-            .put(`posts/${query.postId}`, {
+            .put(`posts/${ query.postId }`, {
                 searchParams: {
-                    page_id: query.page_id,
+                    page_id: query.page_id
                 },
                 json: {
-                    content: query.content,
-                },
+                    content: query.content
+                }
             })
             .json<Post>();
     }

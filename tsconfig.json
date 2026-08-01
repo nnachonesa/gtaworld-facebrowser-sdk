@@ -12,7 +12,8 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"inlineSourceMap": true,
-		"rootDir": "./src"
+		"rootDir": "./src",
+		"strictNullChecks": true
 	},
 	"exclude": [
 		"node_modules"
