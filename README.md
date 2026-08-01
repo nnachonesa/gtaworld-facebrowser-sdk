@@ -8,6 +8,7 @@ Una librería TypeScript para interactuar con la API de GTA World (es) de forma 
 - 📝 Crear, editar y eliminar publicaciones
 - 💬 Leer y crear comentarios
 - 📄 Obtener las páginas del usuario
+- 📩 Conversaciones de la pagina.
 
 ---
 
@@ -152,6 +153,29 @@ await client.comments.post({
 ```
 ---
 
+# Conversaciones
+## Obtener conversaciones
+
+Obtiene todos los chats de la pagina.
+
+```ts
+const comments = await client.dm.list({
+    page_id: 6023
+});
+```
+
+---
+
+## Obtener los mensajes de una conversacion
+
+```ts
+await client.dm.getMessagesFromDM({
+    conversationId: 3947
+    page_id: 6023,
+});
+```
+---
+
 # Referencia de la API
 
 ## Pages
@@ -180,6 +204,15 @@ await client.comments.post({
 |---------|-------------|
 | `comments.get()` | Obtiene los comentarios de una publicación. |
 | `comments.post()` | Publica un nuevo comentario. |
+
+---
+
+## Conversaciones
+
+| Método | Descripción |
+|---------|-------------|
+| `dm.list()` | Obtiene los chats de una pagina. |
+| `dm.getMessagesFromDM()` | Obtiene las conversaciones de un chat. |
 
 ---
 
