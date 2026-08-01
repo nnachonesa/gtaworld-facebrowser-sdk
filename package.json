@@ -30,7 +30,7 @@
     "gta-world",
     "gta-world-es"
   ],
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Una librería TypeScript para interactuar con la API de GTA World (es) de forma sencilla y tipada.",
   "main": "./typings/index.js",
   "types": "./typings/index.d.ts"
