@@ -32,6 +32,11 @@
   ],
   "version": "2.0.0",
   "description": "Una librería TypeScript para interactuar con la API de GTA World (es) de forma sencilla y tipada.",
+  "repository": "git+https://github.com/nnachonesa/gtaworld-facebrowser-sdkk.git",
+  "bugs": {
+    "url": "https://github.com/nnachonesa/gtaworld-facebrowser-sdk/issues"
+  },
+  "homepage": "https://github.com/nnachonesa/gtaworld-facebrowser-sdk#readme",
   "main": "./typings/index.js",
   "types": "./typings/index.d.ts"
 }

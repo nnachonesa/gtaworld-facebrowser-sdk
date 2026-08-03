@@ -1,7 +1,6 @@
 # 📦 GTA World FaceBrowser
 
-Una librería TypeScript para interactuar con la API de GTA World (es) de forma sencilla y tipada.
-
+Por favor, ante cualquier inconveniente con la libreria, puede crear un [issue](https://github.com/nnachonesa/gtaworld-facebrowser-sdk/issues).
 ## Caracteristicas
 
 - 📦 Totalmente tipado con TypeScript
@@ -18,6 +17,13 @@ Una librería TypeScript para interactuar con la API de GTA World (es) de forma 
 import { FaceClient } from "gtaworld-fb";
 
 const client = new FaceClient("TU_API_KEY"); // existe un segundo parametro que es la url_base, en cambio de que cambie en un futuro la misma se podra cambiar
+```
+> [!IMPORTANT]
+> Para utilizar la SDK con el FaceBrowser del ingles, se debe de cambiar la URL a "https://face.gta.world/api/v1/page-api/"
+```ts
+import { FaceClient } from "gtaworld-fb";
+
+const client = new FaceClient("API_KEY", "https://face.gta.world/api/v1/")
 ```
 
 # ¿Qué es un `page_id`?

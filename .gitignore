@@ -175,4 +175,4 @@ dist
 .DS_Store
 
 # others
-./index.ts
+/index.ts
