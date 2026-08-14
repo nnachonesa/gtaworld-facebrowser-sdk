@@ -29,23 +29,22 @@ interface DmMeta {
     per_page: number;
     total: number;
 }
-export interface DmMessagesResponse {
-    messages: [
-        {
+export interface DmMessage {
+    id: number;
+    content: string;
+    from_page: boolean;
+    sender: {
+        type: string;
+        page: {
             id: number;
-            content: string;
-            from_page: boolean;
-            sender: {
-                type: string;
-                page: {
-                    id: number;
-                    name: string;
-                };
-            };
-            created_at: string;
-        }
-    ];
-    next_cursor: boolean;
-    prev_cursor: boolean;
+            name: string;
+        };
+    };
+    created_at: string;
+}
+export interface DmMessagesResponse {
+    messages: DmMessage[];
+    next_cursor: string | null;
+    prev_cursor: string | null;
 }
 export {};

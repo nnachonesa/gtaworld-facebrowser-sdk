@@ -1,5 +1,5 @@
-import { type HttpClient } from '../http';
-import { type DmQuery, type DmReponse, type DmMessagesResponse } from '../types';
+import type { HttpClient } from '../http';
+import type { DmMessagesResponse, DmQuery, DmReponse } from '../types';
 export declare class DmAPI {
     private readonly http;
     constructor(http: HttpClient);

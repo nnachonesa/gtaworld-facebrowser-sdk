@@ -1,4 +1,4 @@
-import { PostsAPI, CommentAPI, PagesAPI, DmAPI } from './routes';
+import { CommentAPI, DmAPI, PagesAPI, PostsAPI } from './routes';
 export declare class FaceClient {
     readonly posts: PostsAPI;
     readonly comments: CommentAPI;

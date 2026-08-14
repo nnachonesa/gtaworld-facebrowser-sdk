@@ -1,4 +1,4 @@
-import { type Profile } from './profile';
+import type { Profile } from './profile';
 export interface GetCommentsQuery {
     page_id: number;
     postId: number;

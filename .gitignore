@@ -176,3 +176,6 @@ dist
 
 # others
 /index.ts
+
+# build output
+/typings

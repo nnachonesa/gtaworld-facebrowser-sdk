@@ -1,5 +1,5 @@
-import { type HttpClient } from '../http';
-import { type GetCommentsQuery, type PostCommentQuery, type GetComment, type PostComment } from '../types';
+import type { HttpClient } from '../http';
+import type { GetComment, GetCommentsQuery, PostComment, PostCommentQuery } from '../types';
 export declare class CommentAPI {
     private readonly http;
     constructor(http: HttpClient);
