@@ -1,27 +1,27 @@
-import { type HttpClient } from '../http';
-import { type GetCommentsQuery, type PostCommentQuery, type GetComment, type PostComment } from '../types';
+import type { HttpClient } from '../http';
+import type { GetComment, GetCommentsQuery, PostComment, PostCommentQuery } from '../types';
 
 export class CommentAPI {
-    constructor (private readonly http: HttpClient) { }
+	constructor(private readonly http: HttpClient) {}
 
-    get (query: GetCommentsQuery) {
-        return this.http.ky
-            .get(`posts/${ query.postId }/comments`, {
-                searchParams: {
-                    page_id: query.page_id
-                }
-            })
-            .json<GetComment>();
-    }
+	get(query: GetCommentsQuery) {
+		return this.http.ky
+			.get(`posts/${query.postId}/comments`, {
+				searchParams: {
+					page_id: query.page_id,
+				},
+			})
+			.json<GetComment>();
+	}
 
-    post (query: PostCommentQuery) {
-        return this.http.ky
-            .post(`posts/${ query.postId }/comments`, {
-                searchParams: {
-                    page_id: query.page_id,
-                    content: query.content
-                }
-            })
-            .json<PostComment>();
-    }
+	post(query: PostCommentQuery) {
+		return this.http.ky
+			.post(`posts/${query.postId}/comments`, {
+				searchParams: {
+					page_id: query.page_id,
+					content: query.content,
+				},
+			})
+			.json<PostComment>();
+	}
 }
