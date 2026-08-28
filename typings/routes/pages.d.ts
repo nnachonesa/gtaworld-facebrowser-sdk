@@ -5,3 +5,4 @@ export declare class PagesAPI {
     constructor(http: HttpClient);
     mine(): Promise<MinePagesResponse>;
 }
+//# sourceMappingURL=pages.d.ts.map

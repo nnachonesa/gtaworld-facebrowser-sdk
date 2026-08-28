@@ -1,6 +1,12 @@
 # 📦 GTA World FaceBrowser
 
 Por favor, ante cualquier inconveniente con la libreria, puede crear un [issue](https://github.com/nnachonesa/gtaworld-facebrowser-sdk/issues).
+
+> [!NOTE]
+> **Breaking change v2.0.3:** `pageId`/`postId` (q eran camelCase) ahora son `page_id`/`post_id` (snake_case), los mismos aplican a `posts.list`, `posts.get`, `posts.edit`, `posts.delete`, `comments.get` y `comments.post` para alinearse con la API. `comments.post` ahora envía `content` en el body JSON.
+> Para `HttpClient`, la `baseUrl` debe terminar en `/` (se normaliza automáticamente)
+
+
 ## Caracteristicas
 
 - 📦 Totalmente tipado con TypeScript
@@ -21,6 +27,7 @@ const client = new FaceClient("TU_API_KEY"); // existe un segundo parametro que 
 > [!IMPORTANT]
 > Para utilizar la SDK con el FaceBrowser del ingles, se debe de cambiar la URL a "https://face.gta.world/api/v1/page-api/"
 ```ts
+// Quedaria:
 import { FaceClient } from "gtaworld-fb";
 
 const client = new FaceClient("API_KEY", "https://face.gta.world/api/v1/")
@@ -73,7 +80,7 @@ Obtiene las publicaciones pertenecientes a una página.
 
 ```ts
 const posts = await client.posts.list({
-    pageId: 6023
+    page_id: 6023
 });
 ```
 
@@ -81,7 +88,7 @@ La API utiliza paginación mediante cursores.
 
 ```ts
 const siguiente = await client.posts.list({
-    pageId: 6023,
+    page_id: 6023,
     cursor: posts.meta.next_cursor
 });
 ```
@@ -92,8 +99,8 @@ const siguiente = await client.posts.list({
 
 ```ts
 const post = await client.posts.get({
-    pageId: 6023,
-    postId: 150
+    page_id: 6023,
+    post_id: 150
 });
 ```
 
@@ -114,7 +121,7 @@ await client.posts.create({
 
 ```ts
 await client.posts.edit({
-    postId: 150,
+    post_id: 150,
     page_id: 6023,
     content: "Contenido actualizado."
 });
@@ -126,7 +133,7 @@ await client.posts.edit({
 
 ```ts
 await client.posts.delete({
-    postId: 150,
+    post_id: 150,
     page_id: 6023
 });
 ```
@@ -141,7 +148,7 @@ Obtiene todos los comentarios de una publicación.
 
 ```ts
 const comments = await client.comments.get({
-    postId: 150,
+    post_id: 150,
     page_id: 6023
 });
 ```
@@ -152,7 +159,7 @@ const comments = await client.comments.get({
 
 ```ts
 await client.comments.post({
-    postId: 150,
+    post_id: 150,
     page_id: 6023,
     content: "excelente publicacion"
 });
@@ -176,7 +183,7 @@ const comments = await client.dm.list({
 
 ```ts
 await client.dm.getMessagesFromDM({
-    conversationId: 3947
+    conversationId: 3947,
     page_id: 6023,
 });
 ```
@@ -231,7 +238,7 @@ const client = new FaceClient(process.env.FACE_API_KEY!);
 
 const pages = await client.pages.mine();
 
-const page = pages[0];
+const page = pages.pages[0];
 
 const post = await client.posts.create({
     page_id: page.id,
@@ -240,7 +247,22 @@ const post = await client.posts.create({
 
 await client.comments.post({
     page_id: page.id,
-    postId: post.post.id,
+    post_id: post.post.id,
     content: "Primer comentario."
 });
+```
+
+---
+
+## Manejo de errores
+
+```ts
+try {
+    const posts = await client.posts.list({ page_id: 6023 });
+} catch (error) {
+    if (error instanceof Error) {
+        // 401: API key inválida, 404: no encontrado, 429: rate limit
+        console.error(error.message);
+    }
+}
 ```

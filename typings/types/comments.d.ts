@@ -1,11 +1,11 @@
 import type { Profile } from './profile';
 export interface GetCommentsQuery {
     page_id: number;
-    postId: number;
+    post_id: number;
 }
 export interface PostCommentQuery {
     page_id: number;
-    postId: number;
+    post_id: number;
     content: string;
 }
 export interface PostComment {
@@ -43,3 +43,4 @@ export interface CommentsMeta {
     total: number;
 }
 export {};
+//# sourceMappingURL=comments.d.ts.map

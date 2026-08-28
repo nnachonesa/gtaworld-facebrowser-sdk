@@ -6,3 +6,4 @@ export declare class FaceClient {
     readonly dm: DmAPI;
     constructor(apiKey: string, baseUrl?: string);
 }
+//# sourceMappingURL=client.d.ts.map

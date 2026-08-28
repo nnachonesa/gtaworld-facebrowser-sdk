@@ -1,5 +1,5 @@
 import type { HttpClient } from '../http';
-import type { DmMessagesResponse, DmQuery, DmReponse } from '../types';
+import type { DmMessagesResponse, DmQuery, DmResponse } from '../types';
 
 export class DmAPI {
 	constructor(private readonly http: HttpClient) {}
@@ -10,7 +10,7 @@ export class DmAPI {
 					page_id: query.page_id,
 				},
 			})
-			.json<DmReponse>();
+			.json<DmResponse>();
 	}
 
 	getMessagesFromDM(query: DmQuery & { conversationId: number }) {

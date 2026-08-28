@@ -6,6 +6,7 @@ export declare class PostsAPI {
     list(query: ListPostQuery): Promise<Posts>;
     create(body: CreatePostQuery): Promise<CreatePostResponse>;
     get(query: GetPostQuery): Promise<Post>;
-    delete(query: DeletePostQuery): import("ky").ResponsePromise<unknown>;
+    delete(query: DeletePostQuery): Promise<void>;
     edit(query: EditPostQuery): Promise<Post>;
 }
+//# sourceMappingURL=posts.d.ts.map

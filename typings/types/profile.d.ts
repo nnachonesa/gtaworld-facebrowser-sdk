@@ -69,4 +69,9 @@ export interface Profile {
 }
 export type User = Record<string, unknown>;
 export type NotificationSettings = Record<string, unknown>;
-export type Media = Record<string, unknown>;
+export interface LegacyMedia {
+    id: number;
+    url: string;
+    type: string;
+}
+//# sourceMappingURL=profile.d.ts.map

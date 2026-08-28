@@ -6,3 +6,4 @@ export declare class CommentAPI {
     get(query: GetCommentsQuery): Promise<GetComment>;
     post(query: PostCommentQuery): Promise<PostComment>;
 }
+//# sourceMappingURL=comments.d.ts.map

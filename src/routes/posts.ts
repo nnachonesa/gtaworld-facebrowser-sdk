@@ -17,7 +17,7 @@ export class PostsAPI {
 		return this.http.ky
 			.get('posts', {
 				searchParams: {
-					page_id: query.pageId,
+					page_id: query.page_id,
 					cursor: query.cursor,
 				},
 			})
@@ -34,16 +34,16 @@ export class PostsAPI {
 
 	get(query: GetPostQuery) {
 		return this.http.ky
-			.get(`posts/${query.postId}`, {
+			.get(`posts/${query.post_id}`, {
 				searchParams: {
-					page_id: query.pageId,
+					page_id: query.page_id,
 				},
 			})
 			.json<Post>();
 	}
 
 	delete(query: DeletePostQuery) {
-		return this.http.ky.delete(`posts/${query.postId}`, {
+		return this.http.ky.delete(`posts/${query.post_id}`, {
 			searchParams: {
 				page_id: query.page_id,
 			},
@@ -52,7 +52,7 @@ export class PostsAPI {
 
 	edit(query: EditPostQuery) {
 		return this.http.ky
-			.put(`posts/${query.postId}`, {
+			.put(`posts/${query.post_id}`, {
 				searchParams: {
 					page_id: query.page_id,
 				},

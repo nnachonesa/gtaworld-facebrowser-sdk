@@ -5,24 +5,38 @@ export interface CreatePostQuery {
     content: string;
 }
 export interface GetPostQuery {
-    postId: number;
-    pageId: number;
+    post_id: number;
+    page_id: number;
 }
 export interface ListPostQuery {
-    pageId: number;
+    page_id: number;
     cursor?: string;
 }
 export interface EditPostQuery {
-    postId: number;
+    post_id: number;
     page_id: number;
     content: string;
 }
 export interface DeletePostQuery {
-    postId: number;
+    post_id: number;
     page_id: number;
 }
 export interface CreatePostResponse {
     post: Post;
+}
+export interface Media {
+    id: number;
+    url: string;
+    type: string;
+    thumbnail_url?: string | null;
+}
+export interface ReactionCount {
+    type: string;
+    count: number;
+}
+export interface UserReaction {
+    type: string;
+    created_at: string;
 }
 export interface Post {
     id: number;
@@ -54,13 +68,13 @@ export interface Post {
     updated_at: string;
     profile: Profile;
     page: Page;
-    media: unknown[];
+    media: Media[];
     reactions_count: number;
     comments_count: number;
     shares_count: number;
     boost_views_count: number | null;
-    reaction_counts: unknown[];
-    user_reaction: unknown | null;
+    reaction_counts: ReactionCount[];
+    user_reaction: UserReaction | null;
     is_saved: boolean;
     is_hidden: boolean;
 }
@@ -81,3 +95,4 @@ export interface Posts {
     links: PostsLinks;
     meta: PostsMeta;
 }
+//# sourceMappingURL=post.d.ts.map

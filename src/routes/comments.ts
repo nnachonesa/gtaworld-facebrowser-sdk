@@ -6,7 +6,7 @@ export class CommentAPI {
 
 	get(query: GetCommentsQuery) {
 		return this.http.ky
-			.get(`posts/${query.postId}/comments`, {
+			.get(`posts/${query.post_id}/comments`, {
 				searchParams: {
 					page_id: query.page_id,
 				},
@@ -16,9 +16,11 @@ export class CommentAPI {
 
 	post(query: PostCommentQuery) {
 		return this.http.ky
-			.post(`posts/${query.postId}/comments`, {
+			.post(`posts/${query.post_id}/comments`, {
 				searchParams: {
 					page_id: query.page_id,
+				},
+				json: {
 					content: query.content,
 				},
 			})
